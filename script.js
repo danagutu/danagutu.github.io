@@ -1,22 +1,27 @@
-// TODO!
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
 
-// Initialize Cloud Firestore and get a reference to the service
-// const db = firebase.firestore();
+const firebaseConfig = {
+    // your config
+};
 
-// function fetchEvents() {
-//     db.collection("events").get().then((querySnapshot) => {
-//         const eventsContainer = document.getElementById('events-container');
-//         eventsContainer.innerHTML = ''; // Clear existing content
-//         querySnapshot.forEach((doc) => {
-//             const eventData = doc.data();
-//             const eventElement = document.createElement('div');
-//             eventElement.textContent = `Event: ${eventData.name}, Date: ${eventData.date}`;
-//             eventsContainer.appendChild(eventElement);
-//         });
-//     }).catch((error) => {
-//         console.error("Error fetching events: ", error);
-//     });
-// }
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-// // Fetch events when the script loads
-// fetchEvents();
+async function fetchEvents() {
+    try {
+        const querySnapshot = await getDocs(collection(db, "events"));
+        const eventsContainer = document.getElementById('events-container');
+        eventsContainer.innerHTML = ''; // Clear existing content
+        querySnapshot.forEach((doc) => {
+            const eventData = doc.data();
+            const eventElement = document.createElement('div');
+            eventElement.textContent = `Event: ${eventData.name}, Date: ${eventData.date}`;
+            eventsContainer.appendChild(eventElement);
+        });
+    } catch (error) {
+        console.error("Error fetching events: ", error);
+    }
+}
+
+fetchEvents();
