@@ -22,11 +22,11 @@ async function fetchEvents() {
         eventsContainer.innerHTML = ''; // Clear existing content
 
         if (snapshot.exists()) {
-            const data = snapshot.val();
-            for (const eventId in data) {
-                const eventData = data[eventId];
+            const events = snapshot.val();
+            for (const eventId in events) {
+                const eventData = events[eventId];
                 const eventElement = document.createElement('div');
-                eventElement.textContent = `Event: ${eventData.name}, Date: ${eventData.date}`;
+                eventElement.textContent = `Event: ${eventID}, Date: ${eventData.date_time}`;
                 eventsContainer.appendChild(eventElement);
             }
         } else {
