@@ -26,7 +26,7 @@ async function fetchEvents() {
             for (const eventId in events) {
                 const eventData = events[eventId];
                 const eventElement = document.createElement('div');
-                eventElement.textContent = `Event: ${eventID}, Date: ${eventData.date_time}`;
+                eventElement.textContent = `Event: ${eventId}, Date: ${eventData.date_time}`;
                 eventsContainer.appendChild(eventElement);
             }
         } else {
@@ -38,3 +38,6 @@ async function fetchEvents() {
 }
 
 fetchEvents();
+
+
+// create a test mode (like in python) with a snapshot of an event in the database
