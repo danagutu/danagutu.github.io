@@ -30,6 +30,7 @@ async function fetchEvents() {
                 <h2>${eventData.title}</h2>
                 <p>Date & Time: ${eventData.date_time}</p>
                 <p>Location: ${eventData.location}</p>
+                <img src=${eventData.image}>
                 <hr>
             `;
             eventsContainer.appendChild(eventElement);
