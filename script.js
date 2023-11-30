@@ -26,7 +26,7 @@ async function fetchEvents() {
             for (const eventId in events) {
                 const eventData = events[eventId];
                 const eventElement = document.createElement('div');
-                eventElement.textContent = `Event: ${eventId}, Date: ${eventData.date_time}`;
+                eventElement.textContent = `Event: ${eventData.event_title}, Date: ${eventData.date_time}`;
                 eventsContainer.appendChild(eventElement);
             }
         } else {
