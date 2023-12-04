@@ -18,8 +18,6 @@ async function fetchEvents() {
     const eventsRef = ref(db, 'events/');
     try {
         const snapshot = await get(eventsRef);
-        const eventsContainer = document.getElementById('events-container');
-        eventsContainer.innerHTML = ''; // Clear existing content
 
         if (snapshot.exists()) {
             const events = snapshot.val();
@@ -27,29 +25,31 @@ async function fetchEvents() {
                 const eventData = events[eventId];
                 const eventsContainer = document.getElementById('events-container');
                 const eventElement = document.createElement('div');
+                eventElement.className = 'event';
 
-                const eventImage = document.createElement('div');
-                eventImage.innerHTML += `
-                <img src=${eventData.image}></img>;
-                `
-                eventImage.addEventListener('click', () => {
-                    console.log(`Image clicked for event ID: ${eventId}`);
-                });
+                const eventImageDiv = document.createElement('div');
+                eventImageDiv.className = 'event-image';
+                eventImageDiv.innerHTML += `
+                <img src=${eventData.image}></img>
+                `;
+                
+                const eventInfoDiv = document.createElement('div');
+                eventInfoDiv.className = 'event-info'
 
                 const titleLink = document.createElement('a');
                 titleLink.href = '#'; 
                 titleLink.innerHTML = `<h2>${eventData.title}</h2>`;
-                titleLink.addEventListener('click', () => {
-                    console.log(`Title clicked for event ID: ${eventId}`);
-                });
-    
-                eventElement.appendChild(eventImage);
-                eventElement.appendChild(titleLink);
-                eventElement.innerHTML += `
+                eventInfoDiv.append(titleLink);
+
+                eventInfoDiv.innerHTML += `
                 <p>Date & Time: ${eventData.date_time}</p>
                 <p>Location: ${eventData.location}</p>
                 <hr>
             `;
+
+                eventElement.appendChild(eventImageDiv);
+                eventElement.appendChild(eventInfoDiv);
+
             eventsContainer.appendChild(eventElement);
             };
 
@@ -63,5 +63,9 @@ async function fetchEvents() {
 
 fetchEvents();
 
-
-// create a test mode (like in python) with a snapshot of an event in the database
+//take event url from bristol su and add that to the clickable title
+//add title that looks like the Figma title 
+//explore with the cards 
+//align figma and the website for easier changes in the future
+//UX course for design 
+//read material design article 
