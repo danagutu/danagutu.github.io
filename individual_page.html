@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <link rel="stylesheet" href="individual_page.css">
+</head>
+
+<body>
+    <div id="main-event-box"></div>
+
+    <script type="module" src="get_events.js"></script>
+    <script>
+        async function populateEvent() {
+            const eventsRef = ref(db, 'events/');
+            try {
+                const snapshot = await get(eventsRef);
+                const eventBox = document.getElementById('event-box');
+
+                if (snapshot.exists()) {
+                    const events = snapshot.val();
+                    const eventId = Object.keys(events)[0];
+
+                    if (eventId) {
+                        const eventData = events[eventId];
+
+                        eventBox.innerHTML = `
+                            <h2>${eventData.title}</h2>
+                            <p>Date & Time: ${eventData.date_time}</p>
+                            <p>Location: ${eventData.location}</p>
+                            <img src=${eventData.image}>
+                            <hr>
+                        `;
+                    } else {
+                        console.log("No events available");
+                    }
+                } else {
+                    console.log("No data available");
+                }
+            } catch (error) {
+                console.error("Error fetching events: ", error);
+            }
+        }
+
+        populateEvent();
+    </script>
+</body>
+</html>

@@ -25,9 +25,25 @@ async function fetchEvents() {
             const events = snapshot.val();
             for (const eventId in events) {
                 const eventData = events[eventId];
+                const eventsContainer = document.getElementById('events-container');
                 const eventElement = document.createElement('div');
-                eventElement.innerHTML = `
-                <h2>${eventData.title}</h2>
+
+                const eventImage = document.createElement('a');
+                eventImage.innerHTML = `<h2>${eventData.image}</h2>`;
+                eventImage.addEventListener('click', () => {
+                    console.log(`Title clicked for event ID: ${eventId}`);
+                });
+
+                const titleLink = document.createElement('a');
+                titleLink.href = '#'; 
+                titleLink.innerHTML = `<h2>${eventData.title}</h2>`;
+                titleLink.addEventListener('click', () => {
+                    console.log(`Title clicked for event ID: ${eventId}`);
+                });
+    
+                eventElement.appendChild(eventImage);
+                eventElement.appendChild(titleLink);
+                eventElement.innerHTML += `
                 <p>Date & Time: ${eventData.date_time}</p>
                 <p>Location: ${eventData.location}</p>
                 <img src=${eventData.image}>
@@ -35,6 +51,7 @@ async function fetchEvents() {
             `;
             eventsContainer.appendChild(eventElement);
             };
+
         } else {
             console.log("No data available");
         }

@@ -1,0 +1,45 @@
+body {
+    background-color: #131212;
+}
+
+#top-box {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#top-box p {
+    display: inline-block;
+}
+
+#top-box .italicize {
+    font-style: italic;
+    display: inline-block;
+}
+
+
+#events-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.upper-half {
+    flex: 1;
+    background-size: cover;
+    background-position: center; 
+}
+
+.lower-half {
+    flex: 1;
+    border-radius: 0 0 10px 10px;
+    background-color: #f6f6f6; 
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
