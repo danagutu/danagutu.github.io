@@ -28,10 +28,12 @@ async function fetchEvents() {
                 const eventsContainer = document.getElementById('events-container');
                 const eventElement = document.createElement('div');
 
-                const eventImage = document.createElement('a');
-                eventImage.innerHTML = `<h2>${eventData.image}</h2>`;
+                const eventImage = document.createElement('div');
+                eventImage.innerHTML += `
+                <img src=${eventData.image}></img>;
+                `
                 eventImage.addEventListener('click', () => {
-                    console.log(`Title clicked for event ID: ${eventId}`);
+                    console.log(`Image clicked for event ID: ${eventId}`);
                 });
 
                 const titleLink = document.createElement('a');
@@ -46,7 +48,6 @@ async function fetchEvents() {
                 eventElement.innerHTML += `
                 <p>Date & Time: ${eventData.date_time}</p>
                 <p>Location: ${eventData.location}</p>
-                <img src=${eventData.image}>
                 <hr>
             `;
             eventsContainer.appendChild(eventElement);
