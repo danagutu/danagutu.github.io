@@ -41,6 +41,7 @@ body {
     flex: 1;
     background-size: cover;
     background-position: center; 
+    backdrop-filter: blur(100px);
 }
 
 .event-info {

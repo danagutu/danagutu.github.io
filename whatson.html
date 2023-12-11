@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <link rel="icon" type="image/png" href="ticket.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreeFind</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+
+        header {
+            color: white;
+            background-color: rgba(123, 66, 137, 0.8);
+            padding: 10px;
+            text-align: center;
+        }
+
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(157, 100, 170, 0.8);
+        }
+
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            text-align: center;
+        }
+
+
+        nav a:hover {
+            background-color: rgba(123, 66, 137, 0.8);
+        }
+        #events-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            height: 100vh;
+        }
+
+
+        .event-card {
+            width: 40vh;
+            height: 40vh;
+            margin: 10px;
+            perspective: 1000px;
+            cursor: pointer;
+            position: relative;
+        }
+
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+
+        .event-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+
+        .card-face {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 10px;
+            overflow:hidden;
+        }
+
+
+        .card-face img {
+            width: 100%;
+            height: 100%;
+            /* flex-grow: 1;
+            height: auto;
+            justify-content: center; */
+            object-fit: contain;
+        }
+        /* Make sure the image does not exceed the container width
+        Allow the image to take up the remaining space
+        Maintain the image's aspect ratio
+        */
+
+
+        .card-face h2 {
+            max-width: 90%;
+            margin: 0;
+            min-height: 4.8em;
+            height: auto;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .card-back {
+            transform: rotateY(180deg);
+            text-align: center;
+        }
+
+
+        .card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+
+        .event-link {
+            color: blue;
+        }
+
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <header>
+        <h1>FreeFind Events</h1>
+        <h2>What's On</h2>
+    </header>
+
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="whatson.html">What's On</a>
+    </nav>
+
+
+    <div id="events-container"></div>
+
+
+    <footer>
+   
+    </footer>
+
+
+    <script type="module" src="get_events.js"></script>
+
+
+<!--     <script>
+        // Get the height of .card-face h2 dynamically using JavaScript
+        const h2Height = document.querySelector('.card-face h2').offsetHeight;
+
+
+        // Set the max-height of .card-face img using the calculated value
+        document.querySelector('.card-face img').style.maxHeight = `calc(100% - ${h2Height}px)`;
+    </script> -->
+
+
+</body>
+
+
+</html>
+
